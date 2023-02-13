@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;600&display=swap');
+body {
+    font-family: 'Raleway', sans-serif;
+}
+button {
+    border-color: #ffc4c4;
+}
+.body-style {
+    height: 100vh;
+    background: rgb(209, 74, 78);
+    background: linear-gradient(180deg, rgba(209, 74, 78, 1) 0%, rgba(188, 57, 63, 1) 38%, rgba(163, 45, 54, 1) 100%);
+}
+.body-style-convs {
+    height: 100vh;
+    background: rgb(247, 243, 245);
+    background: linear-gradient(180deg, rgba(247, 243, 245, 1) 0%, rgba(236, 233, 232, 1) 51%, rgba(229, 225, 225, 1) 100%);
+}

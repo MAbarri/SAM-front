@@ -1,0 +1,38 @@
+<div class="convs-header">
+    <button  [routerLink]="'/talk'" class="nav-section nav-back button-gradient-box">
+        <span class="material-symbols-outlined">
+            arrow_back
+        </span>
+    </button>
+    <div class="nav-section nav-title">
+        <h4>Conversations List</h4>
+    </div>
+    <button class="nav-section nav-clear button-gradient-box">
+        <span class="material-symbols-outlined icon-span-style">
+            playlist_remove
+        </span>
+    </button>
+</div>
+
+<div class="convs-content">
+    <div class="conv-item">
+        <div class="conv-item-icons">
+            <span class="material-symbols-outlined">
+                smart_toy
+            </span>
+        </div>
+        <div class="conv-item-content">
+            Conversation about something
+        </div>
+        <button class="conv-item-actions button-gradient-box">
+            <span class="material-symbols-outlined delete-icon-style">
+               delete
+            </span>
+        </button>
+    </div>
+</div>
+<div class="convs-footer">
+    <button  [routerLink]="'/talk'" class="button-box blurred-shadow" style="display: inherit;">
+        <p class="no-margin">Start New conversation</p>
+    </button>
+</div>

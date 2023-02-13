@@ -1,0 +1,54 @@
+<!--     
+    <div class="row">
+        <div class="col-12 text-center header">
+            header
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center body">
+            <h5>
+                Conversation
+            </h5>
+            <div class=" col-12 convo">
+                <div class="chat-bubble" *ngFor="let item of conversation">
+                    {{item.sender}} : {{item.content}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 text-center banner">
+            <button (mousedown)="startListening()" (mouseup)="stopListening()">
+                hold to talk
+            </button>
+        </div>
+    </div> -->
+
+
+<img class="bot-hero" src="assets/img/bot.png" alt="">
+<div class="bot-message-box">
+    <div class="button-box blurred-shadow">
+        <p class="no-margin">Hello There !</p>
+    </div>
+</div>
+<div class="message-section">
+    <p class="no-margin"> <span class="sender-span">SAM:</span> Hello, My name is SAM, Which stands for "Smart Artificial Mate",<br> Hold the Mic Button to talk to me </p>
+    <p class="no-margin"  *ngFor="let item of conversation"><span class="sender-span">{{item.sender}}:</span> {{item.content}} </p>
+</div>
+<div class="bot-actions-wrapper">
+    <div class="third-screen stick-bottom stick-left">
+        <button class="material-symbols-outlined button-gradient-box" style="padding: 10px;">
+            save
+        </button>
+    </div>
+    <div class="full-width stick-bottom">
+        <button class="material-symbols-outlined button-gradient-box" style="padding: 14px; font-size: 50px;" (mousedown)="startListening()" (mouseup)="stopListening()">
+            mic
+        </button>
+    </div>
+    <div class="third-screen stick-bottom stick-right">
+        <button [routerLink]="'/convs'" class="material-symbols-outlined button-gradient-box" style="padding: 10px;">
+            forum
+        </button>
+    </div>
+</div>

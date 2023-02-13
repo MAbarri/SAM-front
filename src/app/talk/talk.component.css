@@ -1,0 +1,102 @@
+/* .header{
+    background-color: bisque;
+    padding:25px 0 25px 0;
+}
+.body{
+    height: 60vh;
+}
+.banner{
+    padding:25px 0 25px 0;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    background-color: aquamarine;
+}
+.circle-button{
+    height: 80px;
+    width: 80px;
+    border-radius: 50px;
+}
+
+.circle-button:active {
+    background-color: red;
+    color: white
+}
+.convo {
+    min-height: 100px;
+    background-color: #dcdcff;
+    border-top: 2px black solid;
+    border-bottom: 2px black solid;
+} */
+/* You can add global styles to this file, and also import other style files */
+
+
+.bot-hero{
+    width: 300px;
+    margin: auto;
+    display: block;
+    margin-top: 8vh;
+}
+.button-box{
+    background: rgb(250, 130, 124);
+    background: linear-gradient(180deg, rgba(250, 130, 124, 1) 0%, rgba(250, 72, 78, 1) 51%, rgba(244, 54, 64, 1) 100%);
+    text-align: center;
+    padding: 10px 5px 10px 10px;
+    width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    border-radius: 22px;
+    font-size: 18px;
+}
+.button-gradient-box {
+    background: rgb(250, 130, 124);
+    background: linear-gradient(180deg, rgba(250, 130, 124, 1) 0%, rgba(250, 72, 78, 1) 51%, rgba(244, 54, 64, 1) 100%);
+    color: white;
+    border-radius: 22px;
+}
+.no-margin {
+    margin: 0;
+}
+.blurred-shadow {
+    box-shadow: 0px 14px 34px 0px rgba(0, 0, 0, 0.59);
+    -webkit-box-shadow: 0px 14px 34px 0px rgba(0, 0, 0, 0.59);
+    -moz-box-shadow: 0px 14px 34px 0px rgba(0, 0, 0, 0.59);
+}
+.message-section {
+    width: 300px;
+    margin: auto;
+    color: white;
+    text-align: center;
+    padding-top: 40px;
+}
+.bot-actions-wrapper {
+    width: 100%;
+    height: 100px;
+    color: white;
+}
+.third-screen {
+    width: 33%;
+    display: inline-block;
+    text-align: center;
+}
+.stick-bottom {
+    position: fixed;
+    bottom: 14px;
+}
+.stick-left {
+    position: fixed;
+    left: 14px;
+}
+.stick-right {
+    position: fixed;
+    right: 14px;
+}
+.full-width {
+    width: 100%;
+    text-align: center;
+}
+
+.sender-span{
+    font-weight: bold;
+}
