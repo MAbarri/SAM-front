@@ -44,13 +44,13 @@ export class TalkComponent implements OnInit {
     setTimeout(async () => {
       this.voiceRecognitionService.stop();
       if (this.voiceRecognitionService.text.indexOf('undefined') == -1 && this.voiceRecognitionService.text.length>2){
-        this.conversation.push({
+        this.conversation.unshift({
           "sender": "You",
           "content": this.voiceRecognitionService.text
         })
         let response = await this.conversationService.sendMessage(this.voiceRecognitionService.text).toPromise();
         console.log('response', response);
-        this.conversation.push({
+        this.conversation.unshift({
           "sender": "SAM",
           "content": response.message
         })

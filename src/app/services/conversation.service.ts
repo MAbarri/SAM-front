@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class ConversationService {
-    private apiUrl = '/api/';
+    private apiUrl = '/api/conversations';
 
     constructor(private http: HttpClient) { }
 
     sendMessage(param:any): Observable<any> {
-        return this.http.post(this.apiUrl, {query: param});
+        return this.http.post(this.apiUrl + "/start", { message: param});
     }
 }

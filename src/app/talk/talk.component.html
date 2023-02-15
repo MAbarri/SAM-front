@@ -31,9 +31,9 @@
         <p class="no-margin">Hello There !</p>
     </div>
 </div>
-<div class="message-section">
-    <p class="no-margin"> <span class="sender-span">SAM:</span> Hello, My name is SAM, Which stands for "Smart Artificial Mate",<br> Hold the Mic Button to talk to me </p>
+<div class="message-section content-fade">
     <p class="no-margin"  *ngFor="let item of conversation"><span class="sender-span">{{item.sender}}:</span> {{item.content}} </p>
+    <p class="no-margin"> <span class="sender-span">SAM:</span> Hello, My name is SAM, Which stands for "Smart Artificial Mate",<br> Hold the Mic Button to talk to me </p>
 </div>
 <div class="bot-actions-wrapper">
     <div class="third-screen stick-bottom stick-left">
