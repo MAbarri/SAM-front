@@ -7,7 +7,7 @@
     <div class="nav-section nav-title">
         <h4>Conversations List</h4>
     </div>
-    <button class="nav-section nav-clear button-gradient-box">
+    <button class="nav-section nav-clear button-gradient-box"  (click)="deleteAllConversation()">
         <span class="material-symbols-outlined icon-span-style">
             playlist_remove
         </span>
@@ -15,16 +15,16 @@
 </div>
 
 <div class="convs-content">
-    <div class="conv-item">
+    <div class="conv-item" *ngFor="let convo of conversations">
         <div class="conv-item-icons">
             <span class="material-symbols-outlined">
                 smart_toy
             </span>
         </div>
-        <div class="conv-item-content">
-            Conversation about something
+        <div class="conv-item-content" [routerLink]="'/talk'"  [queryParams]="{conv: convo.id}">
+            {{convo.title}}
         </div>
-        <button class="conv-item-actions button-gradient-box">
+        <button class="conv-item-actions button-gradient-box" (click)="deleteConversation(convo.id)">
             <span class="material-symbols-outlined delete-icon-style">
                delete
             </span>
@@ -32,7 +32,7 @@
     </div>
 </div>
 <div class="convs-footer">
-    <button  [routerLink]="'/talk'" class="button-box blurred-shadow" style="display: inherit;">
+    <button  [routerLink]="'/talk'" [queryParams]="{conv: 'new'}" class="button-box blurred-shadow" style="display: inherit;">
         <p class="no-margin">Start New conversation</p>
     </button>
 </div>

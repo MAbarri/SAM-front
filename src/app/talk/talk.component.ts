@@ -2,6 +2,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ConversationService } from '../services/conversation.service';
 import { VoiceRecognitionService } from '../services/speech.service';
 import * as _ from 'underscore';
+import { UserService } from '../services/user.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -13,13 +15,26 @@ import * as _ from 'underscore';
 })
 export class TalkComponent implements OnInit {
 
+
+  userId : any = "1";
+  user : any;
+  userEmail: any = "default@default.com";
   conversation: any[] = [];
+  activeConversation : any;
   selectedVoice : any;
 
   ngOnDestroy() {
     document.body.className = "";
   }
-  constructor(private voiceRecognitionService: VoiceRecognitionService, private conversationService: ConversationService) {
+  constructor(private voiceRecognitionService: VoiceRecognitionService, private conversationService: ConversationService, private userService: UserService, private route: ActivatedRoute) {
+
+    this.route.queryParams.subscribe(params => {
+      let queryparams = params;
+      let convParam = queryparams["conv"];
+
+      this.loadConversation(convParam);
+    });
+
     document.body.className = "body-style";
     this.voiceRecognitionService.init();
 
@@ -34,7 +49,22 @@ export class TalkComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  
+  async loadConversation(convParam : any){
+    this.user = await this.userService.getActiveUser(this.userEmail).toPromise();
+    if (convParam) {
+      if (convParam == "new") {
+        this.activeConversation = await this.conversationService.startNewConversation(this.user.id).toPromise();
+      } else {
+        this.activeConversation = await this.conversationService.getConversation(this.user.id, convParam).toPromise();
+      }
+    } else {
+      this.activeConversation = await this.conversationService.getActiveConversation(this.user.id).toPromise();
+    }
+    this.conversation = _.map(this.activeConversation.messages, (msg) => { return { sender: msg.sender == 'bot' ? "SAM" : "You", content: msg.content.replace(/(?:\r\n|\r|\n)/g, '<br>') } });
+    this.conversation.reverse();
+    console.log('_________ activeConversation ', this.activeConversation)
+  }
 
   startListening() {
     this.voiceRecognitionService.start();
@@ -48,7 +78,7 @@ export class TalkComponent implements OnInit {
           "sender": "You",
           "content": this.voiceRecognitionService.text
         })
-        let response = await this.conversationService.sendMessage(this.voiceRecognitionService.text).toPromise();
+        let response = await this.conversationService.sendMessage(this.activeConversation.id, this.user.id, this.voiceRecognitionService.text).toPromise();
         console.log('response', response);
         this.conversation.unshift({
           "sender": "SAM",
