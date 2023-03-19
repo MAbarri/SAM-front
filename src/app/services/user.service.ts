@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
     providedIn: 'root'
 })
 export class UserService {
-    private apiUrl = '/api/users';
+    private apiUrl = 'https://api.smart-assistant-mate.com/users';
 
     constructor(private http: HttpClient) { }
 
