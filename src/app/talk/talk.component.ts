@@ -51,7 +51,7 @@ export class TalkComponent implements OnInit {
   }
   
   async loadConversation(convParam : any){
-    this.user = await this.userService.getActiveUser(this.userEmail).toPromise();
+    this.user = await this.userService.getActiveUser().toPromise();
     if (convParam) {
       if (convParam == "new") {
         this.activeConversation = await this.conversationService.startNewConversation(this.user.id).toPromise();
