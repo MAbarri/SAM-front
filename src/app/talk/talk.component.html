@@ -42,7 +42,7 @@
         </button>
     </div>
     <div class="full-width stick-bottom">
-        <button class="material-symbols-outlined button-gradient-box" style="padding: 14px; font-size: 50px;" (mousedown)="startListening()" (mouseup)="stopListening()">
+        <button class="material-symbols-outlined button-gradient-box notSelectable" style="padding: 14px; font-size: 50px;" (mousedown)="startListening()" (mouseup)="stopListening()"  (mousedown)="startListening()" (mouseup)="stopListening()" (touchstart)="startListening()" (touchend)="stopListening()">
             mic
         </button>
     </div>

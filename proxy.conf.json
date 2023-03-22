@@ -1,6 +1,6 @@
 {
     "/api/*": {
-        "target": "https://api.smart-assistant-mate.com/",
+        "target": "http://localhost:3000/",
         "secure": false,
         "pathRewrite": {
             "^/api": ""

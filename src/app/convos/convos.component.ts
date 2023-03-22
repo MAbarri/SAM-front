@@ -27,7 +27,7 @@ export class ConvosComponent implements OnInit {
   }
 
   async loadConvosList(){
-    this.user = await this.userService.getActiveUser(this.userEmail).toPromise();
+    this.user = await this.userService.getActiveUser().toPromise();
     this.conversations = await this.conversationService.getLastEightConvos(this.user.id).toPromise();
     console.log('this.conversations', this.conversations)
   }

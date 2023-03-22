@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class UserService {
-    private apiUrl = 'https://api.smart-assistant-mate.com/users';
+    private apiUrl = environment.apiURL+'/users';
 
     constructor(private http: HttpClient) { }
 
-    getActiveUser(userId:any): Observable<any> {
-        return this.http.get(this.apiUrl + "/" + userId +"/active");
+    getActiveUser(): Observable<any> {
+        return this.http.get(this.apiUrl + "/me");
     }
 }
