@@ -27,6 +27,18 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+  signInWithFacebook() {
+    this.authService.facebookSignIn().subscribe(
+      (response) => {
+        console.log('response fron front : ', response)
+        // Redirect to the desired page after successful authentication
+        this.router.navigate(['/talk']);
+      },
+      (error) => {
+        console.error('Error during authentication:', error);
+      }
+    );
+  }
 
   ngOnDestroy() {
     document.body.className = "";

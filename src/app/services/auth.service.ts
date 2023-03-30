@@ -36,6 +36,27 @@ export class AuthService {
             })
         );
     }
+    facebookSignIn(): Observable<any> {
+        const provider = new firebase.auth.FacebookAuthProvider();
+        return from(this.afAuth.signInWithPopup(provider)).pipe(
+            switchMap(async (credential) => {
+                if (credential && credential.user) {
+                    const { email, displayName: friendlyName } = credential.user;
+                    const response: any = await this.http
+                        .post(this.apiUrl, { email, friendlyName })
+                        .toPromise();
+                    if (response && response.accessToken) {
+                        let token = response.accessToken;
+                        localStorage.setItem('token', token);
+                        return { Success: 'User authenticated' };
+                    } else return { Error: 'No user data available' };
+                } else {
+                    return { Error: 'No user data available' };
+                }
+            })
+        );
+    }
+
     isAuthenticated(): boolean {
         const token = localStorage.getItem('token');
         return !!token; // Returns true if the token exists, false if it's null or undefined
