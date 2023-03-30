@@ -5,6 +5,8 @@ import * as _ from 'underscore';
 import { UserService } from '../services/user.service';
 import { ActivatedRoute } from '@angular/router';
 
+declare const speak: (text : string) => void; // Add this line
+
 
 @Component({
   selector: 'app-talk',
@@ -40,10 +42,10 @@ export class TalkComponent implements OnInit {
 
 
 
-    window.speechSynthesis.onvoiceschanged = () => {
-      const updatedVoices = window.speechSynthesis.getVoices();
-      this.selectedVoice = _.find(updatedVoices, (voice: any) => { return voice.name == "Fiona"});
-    };
+    // window.speechSynthesis.onvoiceschanged = () => {
+    //   const updatedVoices = window.speechSynthesis.getVoices();
+    //   this.selectedVoice = _.find(updatedVoices, (voice: any) => { return voice.name == "Fiona"});
+    // };
 
   }
 
@@ -73,6 +75,7 @@ export class TalkComponent implements OnInit {
   stopListening() {
     setTimeout(async () => {
       this.voiceRecognitionService.stop();
+      console.log('this.voiceRecognitionService.text', this.voiceRecognitionService.text)
       if (this.voiceRecognitionService.text.indexOf('undefined') == -1 && this.voiceRecognitionService.text.length>2){
         this.conversation.unshift({
           "sender": "You",
@@ -91,15 +94,16 @@ export class TalkComponent implements OnInit {
 
 
   async readText(textToRead:any) {
-    const speech = new SpeechSynthesisUtterance();
-    speech.text = textToRead;
-    speech.volume = 1;
-    speech.rate = 1;
-    speech.pitch = 1;
-    if(this.selectedVoice) {
-      speech.voice = this.selectedVoice; 
-    }
-    window.speechSynthesis.speak(speech);
+    // const speech = new SpeechSynthesisUtterance();
+    // speech.text = textToRead;
+    // speech.volume = 1;
+    // speech.rate = 1;
+    // speech.pitch = 1;
+    // if(this.selectedVoice) {
+    //   speech.voice = this.selectedVoice; 
+    // }
+    // window.speechSynthesis.speak(speech);
+    speak(textToRead);
   }
 }
 
