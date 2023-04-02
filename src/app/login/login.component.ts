@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.userAgent = navigator.userAgent;
-    this.isMobileApp = this.userAgent != "samapp";
+    this.isMobileApp = this.userAgent == "samapp";
     console.log('is mobile app:', this.isMobileApp);
   }
   signInWithGoogle() {
