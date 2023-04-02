@@ -37,14 +37,23 @@
 </div>
 <div class="bot-actions-wrapper">
     <div class="third-screen stick-bottom stick-left">
-        <button class="material-symbols-outlined button-gradient-box" style="padding: 10px;">
-            save
+        <button class="material-symbols-outlined button-gradient-box" (click)="switchInputMode()" style="padding: 10px;">
+            {{textmode ? "mic" : "keyboard"}}
         </button>
     </div>
-    <div class="full-width stick-bottom">
-        <button class="material-symbols-outlined button-gradient-box notSelectable" style="padding: 14px; font-size: 50px;"  (touchstart)="startListening()" (touchend)="stopListening()">
+    <div class="third-screen stick-bottom centered">
+        <button *ngIf="!textmode" class="material-symbols-outlined button-gradient-box notSelectable Rec" style="padding: 14px; font-size: 50px;"  (touchstart)="startListening()" (touchend)="stopListening()">
             mic
         </button>
+        <div class="form__group field" *ngIf="textmode">
+                <input type="input" class="form__field" placeholder="Message" name="name" id='name' style="width:100%;margin-bottom: 10px;" [(ngModel)]="textModeValue" />
+                <!-- <label for="name" class="form__label">Message</label> -->
+            <button class="material-symbols-outlined button-gradient-box"
+                style="padding: 14px; font-size: 30px;"
+                (click)="sendTextMessage()">
+                send
+            </button>
+        </div>
     </div>
     <div class="third-screen stick-bottom stick-right">
         <button [routerLink]="'/convs'" class="material-symbols-outlined button-gradient-box" style="padding: 10px;">

@@ -25,6 +25,9 @@ export class TalkComponent implements OnInit {
   activeConversation : any;
   selectedVoice : any;
 
+  textmode: boolean = false;
+  textModeValue : any;
+
   ngOnDestroy() {
     document.body.className = "";
   }
@@ -72,6 +75,23 @@ export class TalkComponent implements OnInit {
     this.voiceRecognitionService.start();
   }
 
+  async sendTextMessage() {
+    
+      if (this.textModeValue.indexOf('undefined') == -1 && this.textModeValue.length>2){
+        this.conversation.unshift({
+          "sender": "You",
+          "content": this.textModeValue
+        })
+        let response = await this.conversationService.sendMessage(this.activeConversation.id, this.user.id, this.textModeValue).toPromise();
+        console.log('response', response);
+        this.conversation.unshift({
+          "sender": "SAM",
+          "content": response.message
+        })
+        this.readText(response.message)
+        this.textModeValue = "";
+      }
+  }
   stopListening() {
     setTimeout(async () => {
       this.voiceRecognitionService.stop();
@@ -104,6 +124,10 @@ export class TalkComponent implements OnInit {
     // }
     // window.speechSynthesis.speak(speech);
     speak(textToRead);
+  }
+  switchInputMode(){
+    this.textmode = !this.textmode;
+    console.log('swtched mode')
   }
 }
 

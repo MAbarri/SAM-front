@@ -13,6 +13,9 @@ import { environment } from '../environments/environment';
 import { LoginComponent } from './login/login.component';
 import { AuthInterceptor } from './services/auth-interceptor';
 import { DisableSelectionDirective } from './disable-selection.directive';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 
 @NgModule({
@@ -24,6 +27,8 @@ import { DisableSelectionDirective } from './disable-selection.directive';
     DisableSelectionDirective
   ],
   imports: [
+    FormsModule,
+    BrowserAnimationsModule,
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,

@@ -26,15 +26,19 @@
             </li>
         </ul>  
 </div>
-<div class="bot-actions-wrapper">
+<div class="bot-actions-wrapper black-fade-gradient">
     <div class="third-screen stick-bottom stick-left">
     </div>
-    <div class="full-width stick-bottom">
+    <div class="full-width stick-bottom" *ngIf="!isMobileApp">
         <h3 style="margin-bottom: 0">Start chatting with me</h3>
         <img src="/assets/img/login-with-google-icon.jpeg" alt="" style="width: 170px;" (click)="signInWithGoogle()">
         <img src="/assets/img/login-with-facebook-icon.png" alt="" style="width: 170px;" (click)="signInWithFacebook()">
-        <!-- <button style="height: 41px; width: 170px; background-size: contain; background-repeat: no-repeat;background-image: url(/assets/img/login-with-google-icon.jpeg);" (click)="signInWithGoogle()"></button>
-        <button style="height: 41px; width: 170px; background-size: contain; background-repeat: no-repeat;background-image: url(/assets/img/login-with-facebook-icon.png);" (click)="signInWithGoogle()"></button> -->
+    </div>
+    <div class="full-width stick-bottom-above" *ngIf="isMobileApp">
+        <h3 style="">Login With Email</h3>
+        <input type="email" placeholder="Email" [(ngModel)]="loginEmail" [@shake]="shaker.animation" >
+        <button class="button-24" style="display: block; margin: auto; margin-top: 6px;" (click)="signInWithEmail()">Sign in</button>
+        
     </div>
     <div class="third-screen stick-bottom stick-right">
     </div>
