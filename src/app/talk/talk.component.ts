@@ -28,6 +28,8 @@ export class TalkComponent implements OnInit {
   textmode: boolean = false;
   textModeValue : any;
 
+  isMobileApp: boolean = false;
+
   ngOnDestroy() {
     document.body.className = "";
   }
@@ -53,6 +55,9 @@ export class TalkComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    let userAgent = navigator.userAgent;
+    this.isMobileApp = userAgent == "samapp";
+    console.log('is mobile app:', this.isMobileApp);
   }
   
   async loadConversation(convParam : any){
