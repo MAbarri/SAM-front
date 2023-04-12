@@ -22,6 +22,7 @@
     "@types/underscore": "^1.11.4",
     "bootstrap": "^5.2.3",
     "firebase": "^9.18.0",
+    "lamejs": "^1.2.1",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "underscore": "^1.13.6",

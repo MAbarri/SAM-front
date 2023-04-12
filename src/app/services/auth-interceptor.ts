@@ -9,6 +9,12 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private router: Router) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const speechToTextApiUrl = 'https://api.openai.com/v1/audio/transcriptions';
+
+        if (req.url === speechToTextApiUrl) {
+            // If so, skip applying the login token and send the original request
+            return next.handle(req);
+        }
         // Get the token from local storage
         const token = localStorage.getItem('token');
 

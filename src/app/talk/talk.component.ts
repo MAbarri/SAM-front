@@ -4,6 +4,7 @@ import { VoiceRecognitionService } from '../services/speech.service';
 import * as _ from 'underscore';
 import { UserService } from '../services/user.service';
 import { ActivatedRoute } from '@angular/router';
+import { SpeechToTextService } from '../services/speech-to-text.service';
 
 declare const speak: (text : string) => void; // Add this line
 
@@ -33,7 +34,7 @@ export class TalkComponent implements OnInit {
   ngOnDestroy() {
     document.body.className = "";
   }
-  constructor(private voiceRecognitionService: VoiceRecognitionService, private conversationService: ConversationService, private userService: UserService, private route: ActivatedRoute) {
+  constructor(private voiceRecognitionService: VoiceRecognitionService, private conversationService: ConversationService, private userService: UserService, private route: ActivatedRoute, private speechToTextService: SpeechToTextService) {
 
     this.route.queryParams.subscribe(params => {
       let queryparams = params;
@@ -133,6 +134,28 @@ export class TalkComponent implements OnInit {
   switchInputMode(){
     this.textmode = !this.textmode;
     console.log('swtched mode')
+  }
+
+  startRecording() {
+    this.speechToTextService.startRecording();
+  }
+  async stopRecording() {
+    const audioBlob = await this.speechToTextService.stopRecording();
+    this.speechToTextService.sendRecording(audioBlob).subscribe(async whisperResponse => {
+      console.log('Transcription:', whisperResponse.text);
+
+      this.conversation.unshift({
+        "sender": "You",
+        "content": whisperResponse.text
+      })
+      let response = await this.conversationService.sendMessage(this.activeConversation.id, this.user.id, whisperResponse.text).toPromise();
+      console.log('response', response);
+      this.conversation.unshift({
+        "sender": "SAM",
+        "content": response.message
+      })
+      this.readText(response.message)
+    });
   }
 }
 
